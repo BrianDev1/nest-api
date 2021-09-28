@@ -1,0 +1,13 @@
+scalar Date
+
+type Lesson {
+  id: String!
+  name: String!
+  startDate: Date!
+  endDate: Date!
+}
+
+# Queries
+type Query {
+  getLessons: [Lesson!]!
+}

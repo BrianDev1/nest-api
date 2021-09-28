@@ -3,7 +3,7 @@ import { join } from 'path';
 
 /* Script to generate typings for graphql schema files when changed */
 
-// Script:
+// Script: npm run gt
 
 const typeDefinitionsFactory = new GraphQLDefinitionsFactory();
 typeDefinitionsFactory.generate({
