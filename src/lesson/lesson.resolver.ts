@@ -1,18 +1,25 @@
-import { Resolver, Query } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { InputCreateLesson } from '../graphql.schema';
+import { LessonService } from './lesson.service';
 
 @Resolver('Lesson')
 export class LessonResolver {
-  constructor() {}
+  constructor(private lessonService: LessonService) {}
 
   @Query('getLessons')
   getLessons() {
-    return [
-      {
-        id: 'Blah',
-        name: 'haha',
-        startDate: new Date(),
-        endDate: new Date(),
-      },
-    ];
+    return this.lessonService.getLessons();
+  }
+
+  // @Query('findLessonById')
+  // async findLessonById(@Args('id') id: string) {
+  //   return await this.lessonService.findLessonById(id);
+  // }
+
+  @Mutation('createLesson')
+  createLesson(
+    @Args('inputCreateLesson') inputCreateLesson: InputCreateLesson,
+  ) {
+    return this.lessonService.createLesson(inputCreateLesson);
   }
 }

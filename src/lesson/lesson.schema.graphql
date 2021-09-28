@@ -1,13 +1,25 @@
 scalar Date
 
-type Lesson {
+type SchoolLesson {
   id: String!
   name: String!
   startDate: Date!
   endDate: Date!
 }
 
+input InputCreateLesson {
+  name: String
+  startDate: Date
+  endDate: Date
+}
+
 # Queries
 type Query {
-  getLessons: [Lesson!]!
+  getLessons: [SchoolLesson!]!
+  findLessonById(id: String!): SchoolLesson!
+}
+
+#Mutations
+type Mutation {
+  createLesson(inputCreateLesson: InputCreateLesson!): SchoolLesson!
 }

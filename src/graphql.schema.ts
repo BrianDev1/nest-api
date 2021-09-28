@@ -7,7 +7,13 @@
 
 /* tslint:disable */
 /* eslint-disable */
-export interface Lesson {
+export interface InputCreateLesson {
+    name?: Nullable<string>;
+    startDate?: Nullable<Date>;
+    endDate?: Nullable<Date>;
+}
+
+export interface SchoolLesson {
     id: string;
     name: string;
     startDate: Date;
@@ -15,7 +21,12 @@ export interface Lesson {
 }
 
 export interface IQuery {
-    getLessons(): Lesson[] | Promise<Lesson[]>;
+    getLessons(): SchoolLesson[] | Promise<SchoolLesson[]>;
+    findLessonById(id: string): SchoolLesson | Promise<SchoolLesson>;
+}
+
+export interface IMutation {
+    createLesson(inputCreateLesson: InputCreateLesson): SchoolLesson | Promise<SchoolLesson>;
 }
 
 type Nullable<T> = T | null;
