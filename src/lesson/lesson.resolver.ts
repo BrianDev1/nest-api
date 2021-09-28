@@ -6,11 +6,13 @@ export class LessonResolver {
 
   @Query('getLessons')
   getLessons() {
-    return {
-      id: 'Blah',
-      name: 'haha',
-      startDate: new Date(),
-      endDate: new Date(),
-    };
+    return [
+      {
+        id: 'Blah',
+        name: 'haha',
+        startDate: new Date(),
+        endDate: new Date(),
+      },
+    ];
   }
 }
