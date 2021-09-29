@@ -23,7 +23,7 @@ export class LessonService {
     }
   }
 
-  async findLessonById(id: string) {
+  async findLessonById(id: string): Promise<SchoolLesson> {
     try {
       const lessonFound = await this.lessonRepository.findOne({ id });
       return convertGqlLesson(lessonFound);
@@ -32,7 +32,9 @@ export class LessonService {
     }
   }
 
-  async createLesson(inputCreatelesson: CreateLessonDto) {
+  async createLesson(
+    inputCreatelesson: CreateLessonDto,
+  ): Promise<SchoolLesson> {
     const createdLesson = this.lessonRepository.create({
       id: uuid(),
       name: inputCreatelesson.name,

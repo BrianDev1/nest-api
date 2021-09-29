@@ -13,6 +13,11 @@ export interface InputCreateLesson {
     endDate?: Nullable<Date>;
 }
 
+export interface InputCreateStudent {
+    firstName?: Nullable<string>;
+    lastName?: Nullable<string>;
+}
+
 export interface SchoolLesson {
     id: string;
     name: string;
@@ -27,6 +32,13 @@ export interface IQuery {
 
 export interface IMutation {
     createLesson(inputCreateLesson: InputCreateLesson): SchoolLesson | Promise<SchoolLesson>;
+    createStudent(inputCreateStudent: InputCreateStudent): Student | Promise<Student>;
+}
+
+export interface Student {
+    id: string;
+    firstName: string;
+    lastName: string;
 }
 
 type Nullable<T> = T | null;

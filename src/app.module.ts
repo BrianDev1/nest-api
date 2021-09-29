@@ -3,6 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { LessonModule } from './lesson/lesson.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LessonEntity } from './lesson/lesson.entity';
+import { StudentModule } from './student/student.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { LessonEntity } from './lesson/lesson.entity';
       useUnifiedTopology: true,
       entities: [LessonEntity],
     }),
+    StudentModule,
   ],
   controllers: [],
   providers: [],

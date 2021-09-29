@@ -1,0 +1,21 @@
+scalar Date
+
+type Student {
+  id: String!
+  firstName: String!
+  lastName: String!
+}
+
+input InputCreateStudent {
+  firstName: String
+  lastName: String
+}
+
+#Queries
+# type Query {
+# }
+
+#Mutations
+type Mutation {
+  createStudent(inputCreateStudent: InputCreateStudent!): Student!
+}
