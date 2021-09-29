@@ -1,15 +1,17 @@
 import { convertGqlLesson } from './../convert/lesson';
-import { Lesson } from './lesson.entity';
+import { LessonEntity } from './lesson.entity';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { v4 as uuid } from 'uuid';
-import { InputCreateLesson, SchoolLesson } from '../graphql.schema';
+import { SchoolLesson } from '../graphql.schema';
+import { CreateLessonDto } from './dto/create-lesson.dto';
 
 @Injectable()
 export class LessonService {
   constructor(
-    @InjectRepository(Lesson) private lessonRepository: Repository<Lesson>,
+    @InjectRepository(LessonEntity)
+    private lessonRepository: Repository<LessonEntity>,
   ) {}
 
   async getLessons(): Promise<SchoolLesson[]> {
@@ -22,16 +24,15 @@ export class LessonService {
   }
 
   async findLessonById(id: string) {
-    console.log(id);
     try {
       const lessonFound = await this.lessonRepository.findOne({ id });
       return convertGqlLesson(lessonFound);
     } catch (error) {
-      throw new InternalServerErrorException('Unable to find lesson ', error);
+      throw new InternalServerErrorException('Unable to find lesson');
     }
   }
 
-  async createLesson(inputCreatelesson: InputCreateLesson) {
+  async createLesson(inputCreatelesson: CreateLessonDto) {
     const createdLesson = this.lessonRepository.create({
       id: uuid(),
       name: inputCreatelesson.name,

@@ -1,6 +1,6 @@
-import { Lesson } from './../lesson/lesson.entity';
+import { LessonEntity } from './../lesson/lesson.entity';
 
-export const convertGqlLesson = (lessonEntity: Lesson) => {
+export const convertGqlLesson = (lessonEntity: LessonEntity) => {
   return {
     id: lessonEntity.id,
     name: lessonEntity.name,
