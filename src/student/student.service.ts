@@ -18,7 +18,16 @@ export class StudentService {
     private studentRepository: Repository<StudentEntity>,
   ) {}
 
-  async findAllStudents() {
+  async findStudent(id: string): Promise<Student> {
+    try {
+      const foundStudent = await this.studentRepository.findOne({ id });
+      return convertGqlStudent(foundStudent);
+    } catch (error) {
+      throw new NotFoundException('Unable to find student');
+    }
+  }
+
+  async findAllStudents(): Promise<Student[]> {
     try {
       const students = await this.studentRepository.find();
       return students.map(convertGqlStudent);

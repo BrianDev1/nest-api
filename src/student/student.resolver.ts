@@ -12,6 +12,11 @@ export class StudentResolver {
     return this.studentService.findAllStudents();
   }
 
+  @Query(() => StudentEntity)
+  findStudent(@Args('id') id: string) {
+    return this.studentService.findStudent(id);
+  }
+
   @Mutation(() => StudentEntity)
   createStudent(
     @Args('inputCreateStudent') inputCreateStudent: CreateStudentDto,
