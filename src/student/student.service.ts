@@ -1,4 +1,8 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Student } from '../graphql.schema';
 import { Repository } from 'typeorm';
@@ -13,6 +17,15 @@ export class StudentService {
     @InjectRepository(StudentEntity)
     private studentRepository: Repository<StudentEntity>,
   ) {}
+
+  async findAllStudents() {
+    try {
+      const students = await this.studentRepository.find();
+      return students.map(convertGqlStudent);
+    } catch (error) {
+      throw new NotFoundException('Unable to find students');
+    }
+  }
 
   async createStudent(inputCreateStudent: CreateStudentDto): Promise<Student> {
     const createStudent = this.studentRepository.create({
