@@ -1,3 +1,4 @@
+import { StudentEntity } from './student/student.entity';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { LessonModule } from './lesson/lesson.module';
@@ -16,7 +17,7 @@ import { StudentModule } from './student/student.module';
       url: 'mongodb://localhost/school',
       synchronize: true,
       useUnifiedTopology: true,
-      entities: [LessonEntity],
+      entities: [LessonEntity, StudentEntity],
     }),
     StudentModule,
   ],

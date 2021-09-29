@@ -28,6 +28,7 @@ export interface SchoolLesson {
 export interface IQuery {
     getLessons(): SchoolLesson[] | Promise<SchoolLesson[]>;
     findLessonById(id: string): SchoolLesson | Promise<SchoolLesson>;
+    findAllStudents(): Student[] | Promise<Student[]>;
 }
 
 export interface IMutation {
