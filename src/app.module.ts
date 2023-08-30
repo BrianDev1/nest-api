@@ -5,23 +5,27 @@ import { LessonModule } from './lesson/lesson.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LessonEntity } from './lesson/lesson.entity';
 import { StudentModule } from './student/student.module';
+import { SchemaFirstModule } from './schema-first/schema-first.module';
+import { CodeFirstModule } from './code-first/code-first.module';
 
 @Module({
   imports: [
     GraphQLModule.forRoot({
+      //autoSchemaFile: true,
       typePaths: ['./**/*.graphql'],
     }),
-    LessonModule,
-    TypeOrmModule.forRoot({
-      type: 'mongodb',
-      url: 'mongodb://localhost/school',
-      synchronize: true,
-      useUnifiedTopology: true,
-      entities: [LessonEntity, StudentEntity],
-    }),
-    StudentModule,
+    // LessonModule,
+    // TypeOrmModule.forRoot({
+    //   type: 'mongodb',
+    //   url: 'mongodb://localhost/school',
+    //   synchronize: true,
+    //   useUnifiedTopology: true,
+    //   entities: [LessonEntity, StudentEntity],
+    // }),
+    //StudentModule,
+    SchemaFirstModule,
+    CodeFirstModule,
   ],
   controllers: [],
-  providers: [],
 })
 export class AppModule {}

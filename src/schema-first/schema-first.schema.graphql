@@ -1,0 +1,25 @@
+#type
+type SchemaFirst {
+  id: ID!
+  name: String!
+  someOtherProp: Int!
+}
+
+#input
+input InputSchemaFirst {
+  name: String!
+  someOtherProp: Int
+}
+
+#Queries
+type Query {
+  findSchemaFirst: SchemaFirst!
+  findAllSchemaFirst: [SchemaFirst!]!
+  findSpecificSchemaFirst(id: String!): SchemaFirst!
+}
+
+#Mutations
+type Mutation {
+  createSchemaFirst(inputCreateSchema: InputSchemaFirst!): SchemaFirst!
+  deleteSchemaFirst(id: String!): String!
+}
